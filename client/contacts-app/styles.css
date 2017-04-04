@@ -1,0 +1,18 @@
+.text-margin {
+    display: inline-block;
+
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-tab {
+    -moz-tab-size: 16; /* Code for Firefox */
+    -o-tab-size: 16; /* Code for Opera 10.6-12.1 */
+    tab-size: 16;
+}

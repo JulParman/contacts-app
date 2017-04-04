@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+</head>
+<body onload="loadData()">
+<h4>New Contact</h4>
+<form>
+    <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="txtfname">
+        <label class="mdl-textfield__label" for="txtfname">First Name</label>
+    </div>
+    <br>
+    <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="txtlname">
+        <label class="mdl-textfield__label" for="txtlname">Last Name</label>
+    </div>
+    <br>
+    <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="txtphone">
+        <label class="mdl-textfield__label" for="txtphone">Phone</label>
+        <span class="mdl-textfield__error">Input is not a number!</span>
+    </div>
+    <br>
+    <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="txtaddress">
+        <label class="mdl-textfield__label" for="txtaddress">Street Address</label>
+    </div>
+    <br>
+    <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="txtcity">
+        <label class="mdl-textfield__label" for="txtcity">City</label>
+    </div>
+    <br>
+    <input type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" value="Add"
+           onclick="addContact()">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onclick="deleteContacts()">Delete</button>
+
+    <button  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="updateContacts()">Update</button>
+
+</form>
+<h4 id="header3">Contacts</h4>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+    <thead>
+    <tr>
+        <th class="text-bold">First name</th>
+        <th class="text-bold">Last name</th>
+        <th class="text-bold">Phone</th>
+        <th class="text-bold">Address</th>
+    </tr>
+    </thead>
+    <tbody id="utable">
+
+    </tbody>
+</table>
+<script type="text/javascript" src="lips/lodash.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-3.2.0.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="contact.js"></script>
+<script type="text/javascript" src="contact-server.js"></script>
+<script type="text/javascript" src="contact-localstorage.js"></script>
+<script type="text/javascript" src="print-contacts.js"></script>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+<script>
+    var contactsArray = [];
+
+    function loadData() {
+
+        function dataLoaded(contacts) {
+            if (contacts) {
+                contactsArray = contacts;
+                contactsApp.printContacts.printContactsFromArray(contacts);
+            }
+        }
+
+        try {
+            //contactsArray = contactsApp.contactLocalStorage.getDataFromLocalStorage();
+             contactsApp.getDataFromServer.getContacts(dataLoaded);
+        }
+        catch (err) {
+            document.getElementById("header3").innerHTML = err.message;
+        }
+
+    }
+
+    function addContact() {
+        //contactsApp.contactLocalStorage.writeStorage(contactsArray);
+        //contactsApp.printContacts.getContacts();
+        var newContact = contactsApp.contacts();
+        contactsApp.getDataFromServer.writeToServer(newContact);
+
+    }
+
+    function deleteContacts() {
+        //contactsApp.contactLocalStorage.deleteRowFromStorage();
+        //var selectedRow = document.querySelector(".is-selected").rowIndex;
+        contactsApp.getDataFromServer.deleteToServer();
+    }
+
+    function updateContacts() {
+        //contactsApp.contactLocalStorage.updateRowFromStorage();
+        contactsApp.getDataFromServer.updateToServer();
+    }
+
+</script>
+</body>
+</html>
