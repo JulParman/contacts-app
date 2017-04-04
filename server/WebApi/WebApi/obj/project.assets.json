@@ -9835,10 +9835,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\dev\\JulParman.github.io\\server\\WebApi\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "D:\\dev\\contacts-app\\server\\WebApi\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "D:\\dev\\JulParman.github.io\\server\\WebApi\\WebApi\\WebApi.csproj",
-      "outputPath": "D:\\dev\\JulParman.github.io\\server\\WebApi\\WebApi\\obj\\",
+      "projectPath": "D:\\dev\\contacts-app\\server\\WebApi\\WebApi\\WebApi.csproj",
+      "outputPath": "D:\\dev\\contacts-app\\server\\WebApi\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
