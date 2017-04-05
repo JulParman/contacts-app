@@ -1,9 +1,9 @@
 export class Contact {
-  private _id:number;
-  private _firstName:string;
-  private _lastName:string;
-  private _address:string;
-  private _city:string;
+  private _id: number;
+  private _firstName: string;
+  private _lastName: string;
+  private _address: string;
+  private _city: string;
 
   constructor(id: number, firstName: string, lastName: string, address: string, city: string) {
     this._id = id;
