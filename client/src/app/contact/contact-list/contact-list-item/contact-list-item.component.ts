@@ -7,7 +7,7 @@ import {Contact} from "../../contact";
   styleUrls: ['./contact-list-item.component.css']
 })
 export class ContactListItemComponent implements OnInit {
-  @Input() contacts: Contact;
+  @Input() contact: Contact;
   @Input() edit: EventEmitter<Contact>;
   @Input() remove: EventEmitter<Contact>;
   @Input() showOnMap: EventEmitter<Contact>;

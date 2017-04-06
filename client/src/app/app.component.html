@@ -1,5 +1,8 @@
+<div fxLayoutAlign="center center">
+  <app-contact-list [contacts]="contacts" (editContact)="editContact($event)" (removeContact)="removeContact($event)" (showContactOnMap)="showContactOnMap($event)"></app-contact-list>
+</div>
 
-<div>
+<div fxLayoutAlign="end end">
 <button md-fab (click)="contactDialog()">
   <md-icon>add</md-icon>
 </button>

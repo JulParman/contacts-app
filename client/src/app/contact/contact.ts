@@ -2,17 +2,18 @@ export class Contact {
   private _id: number;
   private _firstName: string;
   private _lastName: string;
+  private _phone: string;
   private _address: string;
   private _city: string;
 
-  constructor(id: number, firstName: string, lastName: string, address: string, city: string) {
+  constructor(id: number, firstName: string, lastName: string, phone: string, address: string, city: string) {
     this._id = id;
     this._firstName = firstName;
     this._lastName = lastName;
+    this._phone = phone;
     this._address = address;
     this._city = city;
   }
-
 
   get id(): number {
     return this._id;
@@ -36,6 +37,14 @@ export class Contact {
 
   set lastName(value: string) {
     this._lastName = value;
+  }
+
+  get phone(): string {
+    return this._phone;
+  }
+
+  set phone(value: string) {
+    this._phone = value;
   }
 
   get address(): string {
