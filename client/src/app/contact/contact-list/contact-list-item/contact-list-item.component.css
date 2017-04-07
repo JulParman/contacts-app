@@ -1,8 +1,14 @@
 .example-card {
   width: 300px;
-  height: 150px;
+  height: 200px;
 }
 
 .example-icon {
   padding: 0 14px;
 }
+
+.background-color-header {
+  background-color: steelblue;
+}
+
+

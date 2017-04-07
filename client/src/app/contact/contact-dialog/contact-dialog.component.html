@@ -1,1 +1,40 @@
-
+<md-card class="example-card">
+  <md-card-header  fxLayout="row" fxLayoutAlign="center start" >
+    <md-toolbar color="blue">
+      <md-icon class="md-icon md-36">person</md-icon>
+    </md-toolbar>
+    <div md-card-avatar class="example-header-image"></div>
+    <div>
+      <md-card-title fxLayout="row" fxLayoutAlign="center start" >New Contact</md-card-title>
+      <!--<md-card-subtitle>{{contact.address + ', ' + contact.city}}</md-card-subtitle>
+      <md-card-subtitle>{{contact.phone}}</md-card-subtitle>-->
+    </div>
+  </md-card-header>
+  <md-card-content  fxLayout="row" fxLayoutAlign="center center">
+    <p>
+      <md-input-container class="example-full-width">
+        <textarea mdInput placeholder="First Name"></textarea>
+      </md-input-container>
+      <md-input-container class="example-full-width">
+        <textarea mdInput placeholder="Last Name"></textarea>
+      </md-input-container>
+      <md-input-container class="example-full-width">
+        <textarea mdInput placeholder="Phone"></textarea>
+      </md-input-container>
+      <md-input-container class="example-full-width">
+        <textarea mdInput placeholder="Street Address"></textarea>
+      </md-input-container>
+      <md-input-container class="example-full-width">
+        <textarea mdInput placeholder="City"></textarea>
+      </md-input-container>
+    </p>
+  </md-card-content>
+  <md-card-actions fxLayout="row" fxLayoutAlign="center end">
+    <button md-fab>
+      <md-icon class="material-icons md-18">cancel</md-icon>
+    </button>
+    <button md-fab>
+      <md-icon class="material-icons md-18">add</md-icon>
+    </button>
+  </md-card-actions>
+</md-card>

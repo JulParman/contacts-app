@@ -1,17 +1,10 @@
 <md-card class="example-card">
-  <md-card-header  fxLayout="row" fxLayoutAlign="center start" >
-    <md-toolbar color="blue">
-      <md-icon class="md-icon md-36">person</md-icon>
-    </md-toolbar>
-    <div md-card-avatar class="example-header-image"></div>
-    <div>
-      <md-card-title fxLayout="row" fxLayoutAlign="center start" >{{contact.firstName + ' ' + contact.lastName}}</md-card-title>
-      <!--<md-card-subtitle>{{contact.address + ', ' + contact.city}}</md-card-subtitle>
-      <md-card-subtitle>{{contact.phone}}</md-card-subtitle>-->
-    </div>
+  <md-card-header fxLayout="row" fxLayoutAlign="center start" class="background-color-header">
+    <md-icon>person</md-icon>
   </md-card-header>
   <md-card-content  fxLayout="row" fxLayoutAlign="center center">
     <p>
+      <md-card-title>{{contact.firstName + ' ' + contact.lastName}}</md-card-title>
       {{contact.address + ', ' + contact.city}}<br>
       {{contact.phone}}
     </p>

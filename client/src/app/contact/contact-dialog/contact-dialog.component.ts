@@ -10,8 +10,6 @@ import {MdDialog} from "@angular/material";
 export class ContactDialogComponent implements OnInit {
   contact:Contact;
 
-
-
   constructor() { }
 
   ngOnInit() {

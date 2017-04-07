@@ -4,6 +4,7 @@ import {Contact} from "../contact";
 @Injectable()
 export class ContactService {
   private contacts: Contact[];
+  private id:number;
 
   constructor() {
     this.contacts = [
@@ -15,5 +16,12 @@ export class ContactService {
   public findContacts(): Contact[] {
     return this.contacts;
   }
+
+  /*public addContact():Contact[]{
+    this.id = 2;
+    this.contacts = [
+      new Contact(contacts.id = id,contacts._firstName,contacts.lastName(),contacts.phone,contacts._address,contacts._city)
+    ];
+  }*/
 
 }

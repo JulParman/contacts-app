@@ -15,51 +15,51 @@ export class Contact {
     this._city = city;
   }
 
-  get id(): number {
+  public get id(): number {
     return this._id;
   }
 
-  set id(value: number) {
+  public set id(value: number) {
     this._id = value;
   }
 
-  get firstName(): string {
+  public get firstName(): string {
     return this._firstName;
   }
 
-  set firstName(value: string) {
+  public set firstName(value: string) {
     this._firstName = value;
   }
 
-  get lastName(): string {
+  public get lastName(): string {
     return this._lastName;
   }
 
-  set lastName(value: string) {
+  public set lastName(value: string) {
     this._lastName = value;
   }
 
-  get phone(): string {
+  public get phone(): string {
     return this._phone;
   }
 
-  set phone(value: string) {
+  public set phone(value: string) {
     this._phone = value;
   }
 
-  get address(): string {
+  public get address(): string {
     return this._address;
   }
 
-  set address(value: string) {
+  public set address(value: string) {
     this._address = value;
   }
 
-  get city(): string {
+  public get city(): string {
     return this._city;
   }
 
-  set city(value: string) {
+  public set city(value: string) {
     this._city = value;
   }
 }
