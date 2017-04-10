@@ -26,7 +26,7 @@ import {DialogService} from "./contact/services/dialog.service";
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [ContactService],
+  providers: [ContactService,DialogService],
   bootstrap: [AppComponent],
   entryComponents: [ContactDialogComponent]
 })

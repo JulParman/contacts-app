@@ -2,7 +2,7 @@
   <app-contact-list [contacts]="contacts" (editContact)="contactEdited($event)" (removeContact)="contactRemoved($event)" (showContactOnMap)="contactShowOnMap($event)"></app-contact-list>
 </div>
 <div div fxLayout="column"  fxLayoutAlign="center end">
-<button md-fab (click)="contactDialog()">
+<button md-fab (click)="addContact()">
   <md-icon>add</md-icon>
 </button>
 </div>

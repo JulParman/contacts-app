@@ -4,7 +4,7 @@ import {Contact} from "../contact";
 @Injectable()
 export class ContactService {
   private contacts: Contact[];
-  private id:number;
+
 
   constructor() {
     this.contacts = [
@@ -17,11 +17,14 @@ export class ContactService {
     return this.contacts;
   }
 
-  /*public addContact():Contact[]{
-    this.id = 2;
-    this.contacts = [
-      new Contact(contacts.id = id,contacts._firstName,contacts.lastName(),contacts.phone,contacts._address,contacts._city)
-    ];
+  /*public addContact(firstName:any,lastName:any,phone:any,address:any,city:any) {
+    new Contact(this.id,firstName,lastName,phone,address,city);
+    this.id++;
   }*/
+
+  public addContact(id:any,firstName:any,lastName:any,phone:any,address:any,city:any) {
+    this.contacts.push(new Contact(id,firstName,lastName,phone,address,city));
+    console.log(this.contacts);
+  }
 
 }

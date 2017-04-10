@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Contact} from "./contact/contact";
 import {MdDialog} from "@angular/material";
 import {DialogService} from "app/contact/services/dialog.service";
@@ -12,10 +12,9 @@ import {ContactService} from "./contact/services/contact.service";
 })
 export class AppComponent {
   contacts: Contact[];
-  dialogService: DialogService;
   selectedContact: Contact;
 
-  constructor(contactService: ContactService){
+  constructor(public dialog: MdDialog, public contactService: ContactService, public dialogService: DialogService) {
     this.contacts = contactService.findContacts();
   }
 
@@ -23,11 +22,10 @@ export class AppComponent {
     this.selectedContact = contact;
   }
 
-
-
-
-
-
+  addContact(contact) {
+    //this.dialog.open(ContactDialogComponent);
+    this.dialogService.contactDialog(contact);
+  }
 
 
 }
