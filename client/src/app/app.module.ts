@@ -11,13 +11,16 @@ import { ContactListItemComponent } from './contact/contact-list/contact-list-it
 import { ContactDialogComponent } from './contact/contact-dialog/contact-dialog.component';
 import {ContactService} from "./contact/services/contact.service";
 import {DialogService} from "./contact/services/dialog.service";
+import {LocalStorageService} from "./contact/services/local-storage.service";
+import { MapDialogComponent } from './contact/map-dialog/map-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactListComponent,
     ContactListItemComponent,
-    ContactDialogComponent
+    ContactDialogComponent,
+    MapDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import {DialogService} from "./contact/services/dialog.service";
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [ContactService,DialogService],
+  providers: [ContactService,DialogService,LocalStorageService],
   bootstrap: [AppComponent],
   entryComponents: [ContactDialogComponent]
 })

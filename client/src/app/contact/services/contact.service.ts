@@ -1,20 +1,21 @@
 import {Injectable} from '@angular/core';
 import {Contact} from "../contact";
+import {LocalStorageService} from "./local-storage.service";
 
 @Injectable()
 export class ContactService {
   private contacts: Contact[];
 
 
-  constructor() {
-    this.contacts = [
+  constructor(public localStorage: LocalStorageService) {
+    /*this.contacts = [
       new Contact(0, 'Keijo', 'Joku', '0401234567', 'Katu 1', 'Lappeenranta'),
       new Contact(1, 'Masa', 'Joku', '0401112223', 'Katu 2', 'Lappeenranta')
-    ];
+    ];*/
   }
 
-  public findContacts(): Contact[] {
-    return this.contacts;
+  public findContacts(){
+    return this.localStorage.loadContacts();
   }
 
   /*public addContact(firstName:any,lastName:any,phone:any,address:any,city:any) {
@@ -22,17 +23,18 @@ export class ContactService {
     this.id++;
   }*/
 
-  public addContact(id:any,firstName:any,lastName:any,phone:any,address:any,city:any) {
-    this.contacts.push(new Contact(id,firstName,lastName,phone,address,city));
-    console.log(this.contacts);
+  public addContact(contact: Contact) {
+    return this.localStorage.saveContact(contact);
+
   }
 
-  public editContact(){
+  public editContact(contact: Contact){
 
   }
 
   public removeContact(contact){
-    this.contacts.splice(contact.id, 1);
+    //this.contacts.splice(contact.id, 1);
+    return this.localStorage.deleteFromLocalStorage(contact);
   }
 
 }

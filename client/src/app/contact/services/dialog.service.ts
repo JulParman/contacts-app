@@ -2,13 +2,14 @@ import {Component, Injectable} from '@angular/core';
 import {Contact} from "../contact";
 import {MdDialog, MdDialogRef, MdDialogTitle} from "@angular/material";
 import {ContactDialogComponent} from "../contact-dialog/contact-dialog.component";
+import {MapDialogComponent} from "../map-dialog/map-dialog.component";
 
 @Injectable()
 export class DialogService {
 
   constructor(private dialog: MdDialog) { }
 
-  public contactDialog(contact: Contact){
+  public contactDialog(contact?: Contact){
     let dialogRef = this.dialog.open(ContactDialogComponent,{
     height:'600px',
     width:'350px',});
@@ -25,11 +26,11 @@ export class DialogService {
     return dialogRef.afterClosed();
   }
 
-  /*public mapDialog(address: string){
+  public mapDialog(address: string){
     let dialogRef = this.dialog.open(MapDialogComponent);
     dialogRef.componentInstance.address = address;
     return dialogRef.afterClosed();
-  }*/
+  }
 
 }
 

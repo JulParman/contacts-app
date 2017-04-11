@@ -12,28 +12,40 @@ import {ContactService} from "./contact/services/contact.service";
 })
 export class AppComponent {
   contacts: Contact[];
-  selectedContact: Contact;
+  //selectedContact: Contact;
 
-  constructor(public dialog: MdDialog, public contactService: ContactService, public dialogService: DialogService) {
-    this.contacts = contactService.findContacts();
+  constructor(public contactService: ContactService, public dialogService: DialogService) {
+    this.reload();
   }
 
-  contactSelected(contact: Contact) {
+  ngOnInit() {
+    this.reload();
+  }
+
+  /*contactSelected(contact: Contact) {
     this.selectedContact = contact;
-  }
+  }*/
 
-  addContact(contact) {
-    //this.dialog.open(ContactDialogComponent);
 
-    this.dialogService.contactDialog(contact);
+  addContact() {
+    //this.dialogService.contactDialog(contact);
+    this.dialogService.contactDialog().subscribe(contact => {
+      this.contactService.addContact(contact);
+      this.reload();
+    });
   }
 
   editContact(contact){
     this.dialogService.contactDialog(contact);
   }
 
-  showContactOnMap(contact){
+  showContactOnMap(contact: Contact){
+    let address = contact._address + ', ' + contact._city;
+    this.dialogService.mapDialog(address);
+  }
 
+  reload(){
+    this.contacts = this.contactService.findContacts();
   }
 
 

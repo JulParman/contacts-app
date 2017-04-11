@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Contact} from "../contact";
-import {MdDialog} from "@angular/material";
+import {MdDialog, MdDialogRef} from "@angular/material";
 import {DialogService} from "../services/dialog.service";
 import {ContactService} from "../services/contact.service";
 
@@ -10,25 +10,26 @@ import {ContactService} from "../services/contact.service";
   styleUrls: ['./contact-dialog.component.css']
 })
 export class ContactDialogComponent implements OnInit {
-  contact:Contact;
-  static id: number = 2;
+  contact: Contact;
 
-  constructor(public contactService:ContactService) {
+  constructor(public dialog: MdDialogRef<ContactDialogComponent>) {
 
   }
 
   ngOnInit() {
+    if (!this.contact) {
+      this.contact = new Contact();
+    }
   }
 
-  addNewContact(firstName,lastName,phone,address,city){
-    this.contactService.addContact(ContactDialogComponent.id,firstName,lastName,phone,address,city);
-    ContactDialogComponent.id++;
-  }
-
-  newEditContact(){
+  addNewContact() {
+    this.dialog.close(this.contact);
 
   }
 
+  newEditContact() {
+
+  }
 
 
 }
