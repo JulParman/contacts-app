@@ -10,11 +10,11 @@
     </p>
   </md-card-content>
   <md-card-actions fxLayout="row" fxLayoutAlign="center end">
-    <button md-fab>
+    <button md-fab (click)="contactRemoveItem(contact)">
       <md-icon class="material-icons md-18">delete</md-icon>
     </button>
-    <button md-fab>
-      <md-icon class="material-icons md-18">create</md-icon>
+    <button md-fab (click)="newEditContact()">
+      <md-icon class="material-icons md-18" >create</md-icon>
     </button>
     <button md-fab>
       <md-icon class="material-icons md-18">place</md-icon>

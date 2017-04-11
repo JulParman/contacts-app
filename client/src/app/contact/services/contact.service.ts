@@ -27,4 +27,12 @@ export class ContactService {
     console.log(this.contacts);
   }
 
+  public editContact(){
+
+  }
+
+  public removeContact(contact){
+    this.contacts.splice(contact.id, 1);
+  }
+
 }

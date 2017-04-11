@@ -25,6 +25,10 @@ export class ContactDialogComponent implements OnInit {
     ContactDialogComponent.id++;
   }
 
+  newEditContact(){
+
+  }
+
 
 
 }

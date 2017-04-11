@@ -24,7 +24,16 @@ export class AppComponent {
 
   addContact(contact) {
     //this.dialog.open(ContactDialogComponent);
+
     this.dialogService.contactDialog(contact);
+  }
+
+  editContact(contact){
+    this.dialogService.contactDialog(contact);
+  }
+
+  showContactOnMap(contact){
+
   }
 
 
