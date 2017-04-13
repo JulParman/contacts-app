@@ -27,9 +27,5 @@ export class ContactDialogComponent implements OnInit {
 
   }
 
-  newEditContact() {
-
-  }
-
 
 }

@@ -12,6 +12,7 @@ import {ContactService} from "./contact/services/contact.service";
 })
 export class AppComponent {
   contacts: Contact[];
+  editOrNot: boolean;
   //selectedContact: Contact;
 
   constructor(public contactService: ContactService, public dialogService: DialogService) {
@@ -28,20 +29,29 @@ export class AppComponent {
 
 
   addContact() {
-    //this.dialogService.contactDialog(contact);
+    this.editOrNot = false;
     this.dialogService.contactDialog().subscribe(contact => {
-      this.contactService.addContact(contact);
-      this.reload();
+        this.contactService.addContact(contact);
+        this.reload();
     });
+    console.log(this.editOrNot);
   }
 
   editContact(contact){
+    this.editOrNot = true;
     this.dialogService.contactDialog(contact);
+    console.log(this.editOrNot);
+  }
+
+  deleteContact(contact: Contact) {
+    this.contactService.removeContact(contact);
+    this.reload();
   }
 
   showContactOnMap(contact: Contact){
-    let address = contact._address + ', ' + contact._city;
-    this.dialogService.mapDialog(address);
+    let mapAddress = contact.address + ', ' + contact.city;
+    this.dialogService.mapDialog(mapAddress);
+    console.log(mapAddress);
   }
 
   reload(){

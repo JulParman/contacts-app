@@ -31,6 +31,6 @@ import { MapDialogComponent } from './contact/map-dialog/map-dialog.component';
   ],
   providers: [ContactService,DialogService,LocalStorageService],
   bootstrap: [AppComponent],
-  entryComponents: [ContactDialogComponent]
+  entryComponents: [ContactDialogComponent,MapDialogComponent]
 })
 export class AppModule { }

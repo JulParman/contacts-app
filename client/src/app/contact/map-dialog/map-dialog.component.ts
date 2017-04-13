@@ -12,14 +12,19 @@ export class MapDialogComponent implements OnInit {
   url: string;
 
   constructor(public sanitizer: DomSanitizer) {
+
+  }
+
+  bypassSecurityTrustResourceUrl(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  makeUrl(){
+    return 'http://www.google.com/maps?output=embed&q=' + this.address;
   }
 
   ngOnInit() {
-    this.url = 'https://www.google.com/maps/place/' + this.address;
-  }
-
-  urlForGoogleMaps(url) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    this.url = 'http://www.google.com/maps?output=embed&q=' + this.address;
   }
 
 }

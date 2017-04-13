@@ -1,5 +1,5 @@
-<iframe
-  [src]="urlForGoogleMaps(url)"
+<iframe class="ca-map-frame"
+  [src]="bypassSecurityTrustResourceUrl(url)"
   scrolling="auto"
   height="400px"
   width="400px"

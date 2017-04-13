@@ -4,7 +4,6 @@ import {LocalStorageService} from "./local-storage.service";
 
 @Injectable()
 export class ContactService {
-  private contacts: Contact[];
 
 
   constructor(public localStorage: LocalStorageService) {
@@ -32,7 +31,7 @@ export class ContactService {
 
   }
 
-  public removeContact(contact){
+  public removeContact(contact:Contact){
     //this.contacts.splice(contact.id, 1);
     return this.localStorage.deleteFromLocalStorage(contact);
   }

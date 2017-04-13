@@ -15,16 +15,28 @@ export class ContactListItemComponent implements OnInit {
   @Input() remove: EventEmitter<Contact>;
   @Input() showOnMap: EventEmitter<Contact>;
 
-  constructor(public dialog:MdDialog,public dialogService:DialogService,public contactService:ContactService) {
+  /*constructor(public dialog:MdDialog,public dialogService:DialogService,public contactService:ContactService) {
     this.edit = new EventEmitter();
     this.remove = new EventEmitter();
     this.showOnMap = new EventEmitter();
-  }
+  }*/
 
   ngOnInit() {
   }
 
-  contactEditItem(contact:Contact){
+  editContact() {
+    this.edit.emit(this.contact);
+  }
+
+  removeContact() {
+    this.remove.emit(this.contact);
+  }
+
+  showContactOnMap() {
+    this.showOnMap.emit(this.contact);
+  }
+
+  /*contactEditItem(contact:Contact){
     this.dialogService.editDialog(contact);
     this.edit.emit(contact);
   }
@@ -33,9 +45,9 @@ export class ContactListItemComponent implements OnInit {
     this.contactService.removeContact(contact);
     this.remove.emit(contact);
   }
-  contactShowOnMap(contact:Contact){
+  contactMapItem(contact:Contact){
     this.showOnMap.emit(contact);
-  }
+  }*/
 
 
 

@@ -1,23 +1,27 @@
 <md-card class="example-card">
   <md-card-header fxLayout="row" fxLayoutAlign="center start" class="background-color-header">
-    <md-icon class="material-icons color md-36">person</md-icon>
+    <md-icon class="material-icons color md-36">account_circle</md-icon>
   </md-card-header>
-  <md-card-content  fxLayout="row" fxLayoutAlign="center center">
+  <md-card-content fxLayout="row" fxLayoutAlign="center center">
     <p>
       <md-card-title>{{contact.firstName + ' ' + contact.lastName}}</md-card-title>
       {{contact.address + ', ' + contact.city}}<br>
       {{contact.phone}}
     </p>
   </md-card-content>
-  <md-card-actions fxLayout="row" fxLayoutAlign="center end">
-    <button md-fab (click)="contactRemoveItem(contact)">
-      <md-icon class="material-icons md-18">delete</md-icon>
-    </button>
-    <button md-fab (click)="newEditContact()">
-      <md-icon class="material-icons md-18" >create</md-icon>
-    </button>
-    <button md-fab (click)="contactShowOnMap(contact)">
-      <md-icon class="material-icons md-18">place</md-icon>
-    </button>
+  <md-card-actions fxLayout="row" fxLayoutAlign="space-between end" class="paddingForButtons">
+    <div fxLayout="row" fxLayoutAlign="start">
+      <button md-fab (click)="removeContact()">
+        <md-icon class="material-icons md-18">delete</md-icon>
+      </button>
+      <button md-fab (click)="editContact()">
+        <md-icon class="material-icons md-18">create</md-icon>
+      </button>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end">
+      <button md-fab (click)="showContactOnMap()">
+        <md-icon class="material-icons md-18">place</md-icon>
+      </button>
+    </div>
   </md-card-actions>
 </md-card>

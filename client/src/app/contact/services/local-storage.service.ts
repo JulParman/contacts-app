@@ -13,25 +13,25 @@ export class LocalStorageService {
     }
   }
 
-  public saveContact(contact: Contact){
+  public saveContact(contact: Contact) {
     let contacts = this.getLocalStorage();
-    if(!contact._id){
-      let lastSaved = <Contact>_.maxBy(contacts, '_id');
-      contact._id = lastSaved ? lastSaved._id + 1 : 1;
+    if (!contact.id) {
+      let lastSaved = <Contact>_.maxBy(contacts, 'id');
+      contact.id = lastSaved ? lastSaved.id + 1 : 1;
       contacts.push(contact);
     }
-    else{
-      contacts = _.map(contacts, function (c:Contact) {
-        return c._id == contact._id ? contact : c;
+    else {
+      contacts = _.map(contacts, function (c: Contact) {
+        return c.id == contact.id ? contact : c;
       });
     }
     this.writeLocalStorage(contacts);
   }
 
-  public deleteFromLocalStorage(contact: Contact){
+  public deleteFromLocalStorage(contact: Contact) {
     let contacts = this.getLocalStorage();
-    _.remove(contacts,function (c:Contact) {
-      return _.isEqual(contact._id,c._id);
+    _.remove(contacts, function (c: Contact) {
+      return _.isEqual(contact.id, c.id);
     });
     this.writeLocalStorage(contacts);
   }

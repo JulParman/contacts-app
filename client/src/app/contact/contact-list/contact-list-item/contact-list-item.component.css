@@ -3,14 +3,17 @@
   height: 200px;
 }
 
-.example-icon {
-  padding: 0 14px;
-}
-
 .background-color-header {
   background-color: steelblue;
 }
 
-.material-icons.color { color: #0040ff; }
+.material-icons.color { color: white;
+padding-right: 15px;
+}
+
+.paddingForButtons{
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
 
