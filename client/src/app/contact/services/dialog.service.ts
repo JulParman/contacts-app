@@ -9,20 +9,12 @@ export class DialogService {
 
   constructor(private dialog: MdDialog) { }
 
-  public contactDialog(contact?: Contact){
+  public contactDialog(title:string,contact?: Contact){
     let dialogRef = this.dialog.open(ContactDialogComponent,{
     height:'600px',
     width:'350px',});
     dialogRef.componentInstance.contact = contact;
-    return dialogRef.afterClosed();
-  }
-
-  public editDialog(contact: Contact){
-    let dialogRef = this.dialog.open(ContactDialogComponent,{
-      height:'600px',
-      width:'350px',
-    });
-    dialogRef.componentInstance.contact = contact;
+    dialogRef.componentInstance.titleForDialog = title;
     return dialogRef.afterClosed();
   }
 

@@ -11,6 +11,7 @@ import {ContactService} from "../services/contact.service";
 })
 export class ContactDialogComponent implements OnInit {
   contact: Contact;
+  titleForDialog:string;
 
   constructor(public dialog: MdDialogRef<ContactDialogComponent>) {
 
