@@ -1,0 +1,19 @@
+<md-card class="login-card" fxLayout="column" fxLayoutAlign="center center">
+  <md-card-content fxLayout="column" fxLayoutAlign="center start">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <md-icon class="material-icons color md-36 login-icon-padding">account_circle</md-icon>
+    <md-input-container>
+      <input mdInput type="text" [(ngModel)]="userName" placeholder="Username">
+    </md-input-container>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+    <md-icon class="material-icons color md-36 login-icon-padding">lock</md-icon>
+    <md-input-container>
+      <input mdInput type="password" [(ngModel)]="password" placeholder="Password">
+    </md-input-container>
+    </div>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="end center">
+    <button md-fab (click)="login()">Login</button>
+  </md-card-actions>
+</md-card>

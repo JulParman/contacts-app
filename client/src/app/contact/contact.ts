@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 
 export class Contact {
   id: number;

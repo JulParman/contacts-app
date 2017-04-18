@@ -5,7 +5,7 @@
   <md-card-content fxLayout="row" fxLayoutAlign="center center">
     <p>
       <md-card-title>{{contact.firstName + ' ' + contact.lastName}}</md-card-title>
-      {{contact.address + ', ' + contact.city}}<br>
+      {{contact | contactAddress}}<br>
       {{contact.phone}}
     </p>
   </md-card-content>

@@ -22,17 +22,4 @@ export class ContactListComponent implements OnInit {
   ngOnInit() {
   }
 
-  /*contactEdited(contact: Contact) {
-    this.editContact.emit(contact);
-  }
-
-  contactRemoved(contact: Contact) {
-    this.editContact.emit(contact);
-  }
-
-  contactShowOnMap(contact: Contact) {
-    this.editContact.emit(contact);
-  }*/
-
-
 }

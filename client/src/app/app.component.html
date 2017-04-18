@@ -1,15 +1,1 @@
-<div fxLayout="row"  fxLayoutAlign="center end">
-  <app-contact-list [contacts]="contacts"
-                    (editContact)="editContact($event)"
-                    (removeContact)="deleteContact($event)"
-                    (showContactOnMap)="showContactOnMap($event)">
-
-  </app-contact-list>
-
-<div class="paddingEnd">
-<button md-fab (click)="addContact()">
-  <md-icon>add</md-icon>
-</button>
-</div>
-</div>
-
+<router-outlet></router-outlet>

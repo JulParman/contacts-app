@@ -25,7 +25,6 @@ export class ContactDialogComponent implements OnInit {
 
   addNewContact() {
     this.dialog.close(this.contact);
-
   }
 
 
