@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ContactsApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using WebApi.Models;
-using Microsoft.AspNetCore.Cors;
 
-namespace WebApi
+namespace ContactsApp
 {
     public class Startup
     {
@@ -30,22 +24,14 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // requires using Microsoft.EntityFrameworkCore;
-            services.AddDbContext<ContactContext>(opt => opt.UseInMemoryDatabase());
-            services.AddSingleton<IContactRepository, ContactRepository>();
-            // Add service and create Policy with options
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
-            });
+            services.AddSingleton<IContactService, ContactService>();
 
-            // Add framework services.
+            services.AddCors(o => o.AddPolicy("DevPolicy", builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
+
             services.AddMvc();
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,16 +40,9 @@ namespace WebApi
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseCors("CorsPolicy");
-            app.UseMvc();
+            app.UseCors("DevPolicy");
 
-            // IMPORTANT: Make sure UseCors() is called BEFORE this
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
         }
     }
 }

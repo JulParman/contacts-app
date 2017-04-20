@@ -1,9 +1,0 @@
-D:\dev\JulParman.github.io\server\WebApi\WebApi\bin\Debug\netcoreapp1.1\WebApi.deps.json
-D:\dev\JulParman.github.io\server\WebApi\WebApi\bin\Debug\netcoreapp1.1\WebApi.runtimeconfig.json
-D:\dev\JulParman.github.io\server\WebApi\WebApi\bin\Debug\netcoreapp1.1\WebApi.runtimeconfig.dev.json
-D:\dev\JulParman.github.io\server\WebApi\WebApi\bin\Debug\netcoreapp1.1\WebApi.dll
-D:\dev\JulParman.github.io\server\WebApi\WebApi\obj\Debug\netcoreapp1.1\WebApi.csprojResolveAssemblyReference.cache
-D:\dev\JulParman.github.io\server\WebApi\WebApi\obj\Debug\netcoreapp1.1\WebApi.AssemblyInfo.cs
-D:\dev\JulParman.github.io\server\WebApi\WebApi\bin\Debug\netcoreapp1.1\WebApi.pdb
-D:\dev\JulParman.github.io\server\WebApi\WebApi\obj\Debug\netcoreapp1.1\WebApi.dll
-D:\dev\JulParman.github.io\server\WebApi\WebApi\obj\Debug\netcoreapp1.1\WebApi.pdb

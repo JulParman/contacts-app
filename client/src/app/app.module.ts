@@ -11,6 +11,7 @@ import {ContactListItemComponent} from './contact/contact-list/contact-list-item
 import {ContactDialogComponent} from './contact/contact-dialog/contact-dialog.component';
 import {ContactService} from "./contact/services/contact.service";
 import {DialogService} from "./contact/services/dialog.service";
+import {ContactApiService} from "./contact/services/contact-api.service";
 import {LocalStorageService} from "./contact/services/local-storage.service";
 import {MapDialogComponent} from './contact/map-dialog/map-dialog.component';
 import {ContactAddressPipe} from './contact/pipes/contact-address.pipe';
@@ -53,7 +54,7 @@ const routes = [
     FlexLayoutModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ContactService, DialogService, LocalStorageService],
+  providers: [ContactService, DialogService, LocalStorageService, ContactApiService],
   bootstrap: [AppComponent],
   entryComponents: [ContactDialogComponent, MapDialogComponent]
 })

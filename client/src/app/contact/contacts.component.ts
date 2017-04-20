@@ -36,22 +36,20 @@ export class ContactsComponent implements OnInit {
     this.editOrNot = false;
     this.title = this.editing(this.editOrNot);
     this.dialogService.contactDialog(this.title).subscribe(contact => {
-      this.contactService.addContact(contact);
-      this.reload();
-    });
-    console.log(this.editOrNot);
+      this.contactService.addContact(contact).subscribe(data => this.reload());
+      });
   }
 
   editContact(contact) {
     this.editOrNot = true;
     this.title = this.editing(this.editOrNot);
-    this.dialogService.contactDialog(this.title,contact);
-    console.log(this.editOrNot);
+    this.dialogService.contactDialog(this.title,contact).subscribe(contact => {
+      this.contactService.updateContact(contact).subscribe(data => this.reload());
+    });
   }
 
   deleteContact(contact: Contact) {
-    this.contactService.removeContact(contact);
-    this.reload();
+    this.contactService.removeContact(contact).subscribe(data => this.reload());
   }
 
   showContactOnMap(contact: Contact) {
@@ -61,7 +59,10 @@ export class ContactsComponent implements OnInit {
   }
 
   reload() {
-    this.contacts = this.contactService.findContacts();
+    //this.contacts = this.contactService.findContacts();
+    this.contactService.findContacts().subscribe(contacts => {
+      this.contacts = contacts;
+    });
   }
 
 }

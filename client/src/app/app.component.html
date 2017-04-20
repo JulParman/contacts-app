@@ -1,1 +1,29 @@
-<router-outlet></router-outlet>
+<md-sidenav-container class="ca-sidenav-container">
+  <md-sidenav *ngIf="!toolbarDisabled" class="ca-sidenav" name="sidenav" #sidenav [mode]="sidenavMode" [opened]="sidenavMode == 'side'">
+    <div fxLayout="row" class="ca-sidenav-toolbar">
+      <div fxLayout="column" fxLayoutAlign="center start">
+        <md-icon style="width: 80px; height: 80px; font-size: 80px">account_circle</md-icon>
+        <div style="font-size: 16px">asdfasdf</div>
+        <div style="font-size: 12px">asdfasdf</div>
+      </div>
+    </div>
+    <div class="ca-sidenav-content">Sidenav</div>
+  </md-sidenav>
+  <md-toolbar *ngIf="!toolbarDisabled" class="mat-elevation-z5" color="primary">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <button md-icon-button (click)="toggle()">
+        <md-icon>menu</md-icon>
+      </button>
+      Contacts app
+    </div>
+  </md-toolbar>
+  <div class="ca-app-container">
+    <div *ngIf="!toolbarDisabled" class="ca-toolbar-placeholder-fix"></div>
+    <router-outlet></router-outlet>
+  </div>
+</md-sidenav-container>
+
+
+
+
+
