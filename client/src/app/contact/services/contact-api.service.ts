@@ -1,16 +1,19 @@
 import {Injectable} from '@angular/core';
 import {Http} from "@angular/http";
 import {Contact} from "../contact";
+import {environment} from  "../../../environments/environment";
+import {ContactStorage} from "./contact-storage";
 
 @Injectable()
-export class ContactApiService {
+export class ContactApiService implements ContactStorage{
 
-  url = 'http://localhost:60829/api/contacts';
+  url = environment.endpointUrl + '/contacts';
+  //url = 'http://localhost:60829/api/contacts';
   //url = 'http://localhost:51057/api/contact';
   constructor(private http: Http) {
   }
 
-  findContacts() {
+  public findContacts() {
 
     // return this.http.get(url).map(function (response) {
     //   return response.json() as Contact[];
@@ -32,7 +35,7 @@ export class ContactApiService {
     // }
   //}
 
-  createContact(contact:Contact){
+  saveContact(contact:Contact){
     return this.http.post(this.url, contact);
   }
 
