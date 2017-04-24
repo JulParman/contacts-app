@@ -36,7 +36,7 @@ export class ContactsComponent implements OnInit {
     this.editOrNot = false;
     this.title = this.editing(this.editOrNot);
     this.dialogService.contactDialog(this.title).subscribe(contact => {
-      this.contactService.addContact(contact).subscribe(data => this.reload());
+      this.contactService.saveContact(contact).subscribe(data => this.reload());
       });
   }
 

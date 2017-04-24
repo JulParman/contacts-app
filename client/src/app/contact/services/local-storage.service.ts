@@ -31,7 +31,7 @@ export class LocalStorageService implements ContactStorage{
     return Observable.of(contacts);
   }
 
-  public deleteContact(contact: Contact) {
+  public removeContact(contact: Contact) {
     let contacts = this.getLocalStorage();
     _.remove(contacts, function (c: Contact) {
       return _.isEqual(contact.id, c.id);
@@ -55,6 +55,10 @@ export class LocalStorageService implements ContactStorage{
   public getLocalStorage() {
     let data = localStorage.getItem(this.localStorageKey);
     return JSON.parse(data);
+  }
+
+  public updateContact(){
+
   }
 
 }

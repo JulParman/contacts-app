@@ -1,13 +1,15 @@
 .example-card {
   width: 300px;
   height: 200px;
+  background-color: #263238;
+  color:white;
 }
 
 .background-color-header {
-  background-color: steelblue;
+  background-color: #FFEB3B;
 }
 
-.material-icons.color { color: white;
+.material-icons.color { color: #263238;
 padding-right: 15px;
 }
 

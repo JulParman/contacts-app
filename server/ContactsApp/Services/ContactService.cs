@@ -34,7 +34,7 @@ namespace ContactsApp.Services
                 contact.FirstName,
                 contact.LastName,
                 contact.Phone,
-                contact.StreetAddress,
+                contact.Address,
                 contact.City));
         }
 

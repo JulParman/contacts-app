@@ -20,7 +20,7 @@ export class ContactService {
     return this.contactStorage.findContacts();
   }
 
-  public addContact(contact: Contact) {
+  public saveContact(contact: Contact) {
     //return this.localStorage.saveContact(contact);
     return this.contactApiService.saveContact(contact);
   }

@@ -2,13 +2,13 @@
 {
     public class Contact
     {
-        public Contact(int id, string firstName, string lastName, string phone, string streetAddress, string city)
+        public Contact(int id, string firstName, string lastName, string phone, string address, string city)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
             Phone = phone;
-            StreetAddress = streetAddress;
+            Address = address;
             City = city;
         }
 
@@ -20,7 +20,7 @@
 
         public string Phone { get; set; }
 
-        public string StreetAddress { get; set; }
+        public string Address { get; set; }
 
         public string City { get; set; }
     }

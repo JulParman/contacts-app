@@ -13,7 +13,7 @@ export class ContactApiService implements ContactStorage{
   constructor(private http: Http) {
   }
 
-  public findContacts() {
+  findContacts() {
 
     // return this.http.get(url).map(function (response) {
     //   return response.json() as Contact[];
