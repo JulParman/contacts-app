@@ -11,15 +11,15 @@
   </md-card-content>
   <md-card-actions fxLayout="row" fxLayoutAlign="space-between end" class="paddingForButtons">
     <div fxLayout="row" fxLayoutAlign="start">
-      <button md-fab (click)="removeContact()">
+      <button md-fab (click)="removeContact()" [appVibrate]="">
         <md-icon class="material-icons md-18">delete</md-icon>
       </button>
-      <button md-fab (click)="editContact()">
+      <button md-fab (click)="editContact()" [appVibrate]="">
         <md-icon class="material-icons md-18">create</md-icon>
       </button>
     </div>
     <div fxLayout="row" fxLayoutAlign="end">
-      <button md-fab (click)="showContactOnMap()">
+      <button md-fab (click)="showContactOnMap()" [appVibrate]="">
         <md-icon class="material-icons md-18">place</md-icon>
       </button>
     </div>

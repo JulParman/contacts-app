@@ -1,4 +1,4 @@
-import {Component, HostListener, ViewChild} from '@angular/core';
+import {Component, HostListener, ViewChild, Input} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {MdSidenav} from "@angular/material";
 import * as _ from "lodash";

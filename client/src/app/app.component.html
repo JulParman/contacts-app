@@ -11,7 +11,7 @@
   </md-sidenav>
   <md-toolbar *ngIf="!toolbarDisabled" color="primary" class="ca-toolbar">
     <div fxLayout="row" fxLayoutAlign="start center" color="white">
-      <button md-icon-button (click)="toggle()">
+      <button md-icon-button (click)="toggle()" [appVibrate]="">
         <md-icon>menu</md-icon>
       </button>
       Contacts app
