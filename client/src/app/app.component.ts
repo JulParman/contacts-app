@@ -2,6 +2,7 @@ import {Component, HostListener, ViewChild, Input} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {MdSidenav} from "@angular/material";
 import * as _ from "lodash";
+import {LoginComponent} from "./contact/user/login/login.component";
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
 
   toolbarDisabled: boolean;
   sidenavMode: string;
+  user:string;
 
   @ViewChild('sidenav') sidenav: MdSidenav;
 
@@ -27,7 +29,6 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.sidenav);
     this.onWindowResize(null);
     this.router.events
       .subscribe(event => {
@@ -37,8 +38,13 @@ export class AppComponent {
             return;
           }
           this.toolbarDisabled = false;
+          this.user = LoginComponent.user;
         }
       });
+  }
+
+  loadUser(){
+
   }
 
   toggle(){

@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
+  static user: string;
   userName: string;
   password: string;
 
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
+  login(userName:string) {
+    LoginComponent.user = userName;
     this.router.navigate(['/contacts']);
   }
 

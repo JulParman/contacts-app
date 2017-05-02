@@ -23,18 +23,6 @@ export class ContactApiService implements ContactStorage{
       .map(response => response.json() as Contact[]);
   }
 
-  //saveContact(contact:Contact){
-  //  return contact.id ? this.createContact(contact): this.updateContact(contact);
-
-    // if(contact.id)
-    // {
-    //   this.createContact(contact);
-    // }
-    // else{
-    //   this.updateContact(contact);
-    // }
-  //}
-
   saveContact(contact:Contact){
     return this.http.post(this.url, contact);
   }
