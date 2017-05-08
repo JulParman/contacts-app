@@ -9,6 +9,7 @@ import * as _ from "lodash";
 export class ContactAddressPipe implements PipeTransform {
 
   transform(contact: Contact, args?: any): any {
+    if(!contact)return '';
     let addressParts = [contact.address || null, contact.city || null];
     addressParts = _.reject(addressParts, _.isNull);
     return addressParts.join(', ');
