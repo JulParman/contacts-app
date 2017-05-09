@@ -26,10 +26,10 @@ describe('ContactLocalStorageService', () => {
 
   function contactArray() {
     return [
-      new Contact(1, 'FirstName', 'LastName', '1234567', 'Address', 'City'),
-      new Contact(2, 'FirstName', 'LastName', '1234567', 'Address', 'City'),
-      new Contact(3, 'FirstName', 'LastName', '1234567', 'Address', 'City')
-    ]
+      new Contact(1, 'Yksi', 'LastName', '1234567', 'Address', 'City'),
+      new Contact(2, 'Kaksi', 'LastName', '1234567', 'Address', 'City'),
+      new Contact(3, 'Kolme', 'LastName', '1234567', 'Address', 'City')
+    ];
   }
 
   it('Should initialize local storage', inject([LocalStorageService], (service: LocalStorageService) => {
@@ -51,23 +51,24 @@ describe('ContactLocalStorageService', () => {
 
   it('#saveContact Should return contact', inject([LocalStorageService], (service: LocalStorageService) => {
     let contacts = contactArray();
-    let contact = new Contact(4, 'FirstName', 'LastName', '1234567', 'Address', 'City');
-    let contactIds = _.map(contacts, 'id');
-    service.saveContact(contact).subscribe((contacts: Contact[]) => {
-      _.forEach(contacts, function (c) {
-        expect(contactIds).toContain(c.id);
-        expect(contacts.length).toBe(4);
-      });
+    let contact: Contact = new Contact(null, 'Neljä', 'LastName', '1234567', 'Address', 'City');
+    localStorage.setItem(localStorageKey, JSON.stringify(contacts));
+    service.saveContact(contact).subscribe((saved: Contact[]) => {
+      let contactIds = _.map(saved, 'id');
+      expect(saved.length).toBe(4);
+      expect(contactIds).toContain(contact.id);
     });
   }));
 
   it('#removeContact Should return contact', inject([LocalStorageService], (service: LocalStorageService) => {
     let contacts = contactArray();
-    let contact =  new Contact(1, 'FirstName', 'LastName', '1234567', 'Address', 'City');
-    //let contactIds = _.map(contacts, 'id');
+    let contact = contacts[1];
+
+    localStorage.setItem(localStorageKey, JSON.stringify(contacts));
     service.removeContact(contact).subscribe((contacts: Contact[]) => {
+      let contactIds = _.map(contacts, 'id');
       _.forEach(contacts, function (c) {
-        //expect(contactIds).toContain(!c.id);
+        expect(contactIds).toContain(!c.id);
         expect(contacts.length).toBe(2);
       });
     });
