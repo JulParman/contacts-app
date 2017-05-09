@@ -58,8 +58,13 @@ export class LocalStorageService implements ContactStorage{
     return JSON.parse(data);
   }
 
-  public updateContact(){
-
+  public updateContact(contact:Contact) {
+    let contacts = this.getLocalStorage();
+    contacts = _.map(contacts, function (c: Contact) {
+      return c.id == contact.id ? contact : c;
+    });
+    this.writeLocalStorage(contacts);
+    return Observable.of(contacts);
   }
 
 }

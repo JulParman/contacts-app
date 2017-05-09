@@ -21,17 +21,18 @@ export class ContactService {
   }
 
   public saveContact(contact: Contact) {
-    //return this.localStorage.saveContact(contact);
-    return this.contactApiService.saveContact(contact);
+    //return this.contactApiService.saveContact(contact);
+    return this.contactStorage.saveContact(contact);
   }
 
   public updateContact(contact:Contact){
-    return this.contactApiService.updateContact(contact);
+    //return this.contactApiService.updateContact(contact);
+    return this.contactStorage.updateContact(contact);
   }
 
   public removeContact(contact: Contact) {
-    //return this.localStorage.deleteFromLocalStorage(contact);
-    return this.contactApiService.removeContact(contact);
+    //return this.contactApiService.removeContact(contact);
+    return this.contactStorage.removeContact(contact);
   }
 
 }
