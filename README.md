@@ -9,12 +9,12 @@ Cordova - Andoid
 
 ### Run Client
 
-Localhost
+*Localhost
 ng serve
 http://localhost:4200/
 
-Web API
+*Web API
 ng serve --environment=dev
 
-Local Storage
+*Local Storage
 ng serve --environment=local
