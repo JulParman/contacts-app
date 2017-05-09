@@ -17,6 +17,7 @@ https://github.com/ekoodi/ekoodi.github.io/blob/master/web-technologies/tasks/ng
 * Localhost
 
 ng serve
+
 http://localhost:4200/
 
 * Web API
