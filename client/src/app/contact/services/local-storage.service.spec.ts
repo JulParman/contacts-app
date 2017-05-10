@@ -49,7 +49,7 @@ describe('ContactLocalStorageService', () => {
     });
   }));
 
-  it('#saveContact Should return contact', inject([LocalStorageService], (service: LocalStorageService) => {
+  it('#saveContact Should add new contact', inject([LocalStorageService], (service: LocalStorageService) => {
     let contacts = contactArray();
     let contact: Contact = new Contact(null, 'Neljä', 'LastName', '1234567', 'Address', 'City');
     localStorage.setItem(localStorageKey, JSON.stringify(contacts));
@@ -60,19 +60,27 @@ describe('ContactLocalStorageService', () => {
     });
   }));
 
-  it('#removeContact Should return contact', inject([LocalStorageService], (service: LocalStorageService) => {
+  it('#removeContact Should remove contact', inject([LocalStorageService], (service: LocalStorageService) => {
     let contacts = contactArray();
     let contact = contacts[1];
-
     localStorage.setItem(localStorageKey, JSON.stringify(contacts));
-    service.removeContact(contact).subscribe((contacts: Contact[]) => {
-      let contactIds = _.map(contacts, 'id');
-      _.forEach(contacts, function (c) {
-        expect(contactIds).toContain(!c.id);
-        expect(contacts.length).toBe(2);
+    service.removeContact(contact).subscribe((saved: Contact[]) => {
+      let contactIds = _.map(saved, 'id');
+      _.forEach(saved, function () {
+        expect(contactIds).not.toContain(contact.id);
+        expect(saved.length).toBe(2);
       });
     });
   }));
 
+  it('#updateContact Should update contact', inject([LocalStorageService], (service: LocalStorageService) => {
+    let contacts = contactArray();
+    let contact: Contact = new Contact(1, 'Neljä', 'LastName', '1234567', 'Address', 'City');
+    localStorage.setItem(localStorageKey, JSON.stringify(contacts));
+    service.updateContact(contact).subscribe((saved: Contact[]) => {
+      expect(saved.length).toBe(3);
+      expect(saved).toContain(contact);
+    });
+  }));
 
 });
