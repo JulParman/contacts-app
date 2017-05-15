@@ -1,6 +1,8 @@
-﻿using ContactsApp.Services;
+﻿using ContactsApp.Repository;
+using ContactsApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -24,7 +26,16 @@ namespace ContactsApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddSingleton<IContactService, ContactService>();
+
+            services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IContactRepository, ContactRepository>();
+
+            services.AddDbContext<ContactContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
 
             services.AddCors(o => o.AddPolicy("DevPolicy", builder =>
             {
@@ -43,6 +54,12 @@ namespace ContactsApp
             app.UseCors("DevPolicy");
 
             app.UseMvc();
+
+            var context = app.ApplicationServices.GetService<ContactContext>();
+            if (context.Database.EnsureCreated())
+                context.Database.Migrate();
         }
+
+
     }
 }
