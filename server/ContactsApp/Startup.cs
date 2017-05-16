@@ -1,11 +1,20 @@
-﻿using ContactsApp.Repository;
+﻿using System;
+using System.Runtime.CompilerServices;
+using ContactsApp.Repository;
 using ContactsApp.Services;
+using ContactsApp.Token;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace ContactsApp
 {
@@ -37,6 +46,15 @@ namespace ContactsApp
             services.AddDbContext<ContactContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
 
+            services.AddApplicationInsightsTelemetry(Configuration);
+
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser().Build());
+            });
+
             services.AddCors(o => o.AddPolicy("DevPolicy", builder =>
             {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
@@ -58,6 +76,22 @@ namespace ContactsApp
             var context = app.ApplicationServices.GetService<ContactContext>();
             if (context.Database.EnsureCreated())
                 context.Database.Migrate();
+        }
+
+        private static void ConfigureAuthentication(IApplicationBuilder app)
+        {
+            app.UseJwtBearerAuthentication(new JwtBearerOptions()
+            {
+                TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = TokenAuthOption.Key,
+                    ValidAudience = TokenAuthOption.Audience,
+                    ValidIssuer = TokenAuthOption.Issuer,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.FromMinutes(0)
+                }
+            });
         }
 
 
