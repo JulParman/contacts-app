@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using ContactsApp.Model;
 using ContactsApp.Services;
 using ContactsApp.Token;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,7 +22,7 @@ namespace ContactsApp.Controllers
         private readonly IUserService _userService;
 
         [HttpPost]
-        public string GetAuthToken([FromBody]User user)
+        public string Authenticate([FromBody]User user)
         {
             var existUser = _userService.FindUserByUsernameAndPassword(user.UserName, user.PassWord);
 
@@ -32,7 +34,7 @@ namespace ContactsApp.Controllers
 
                 return JsonConvert.SerializeObject(new RequestResult
                 {
-                    State = RequestState.Success,
+                    State = RequestState.Success, 
                     Data = new
                     {
                         requertAt = requestAt,
@@ -50,6 +52,23 @@ namespace ContactsApp.Controllers
                     Msg = "Username or password is invalid"
                 });
             }
+        }
+        
+
+        [HttpGet]
+        [Authorize("Bearer")]
+        public string GetUserInfo()
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+
+            return JsonConvert.SerializeObject(new RequestResult
+            {
+                State = RequestState.Success,
+                Data = new
+                {
+                    UserName = claimsIdentity.Name
+                }
+            });
         }
     }
 }
