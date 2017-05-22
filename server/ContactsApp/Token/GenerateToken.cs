@@ -12,15 +12,14 @@ namespace ContactsApp.Token
 {
     public class GenerateToken
     {
-        public static string TokenGeneration(User user, DateTime expires)
+        public static string TokenGeneration(User user)
         {
             var handler = new JwtSecurityTokenHandler();
+            var expires = DateTime.Now + TokenAuthOption.ExpiresSpan;
 
-            ClaimsIdentity identity = new ClaimsIdentity(
-                new GenericIdentity(user.UserName, "TokenAuth"),
-                new[] {
-            new Claim("ID", user.Id.ToString())
-                }
+            var identity = new ClaimsIdentity(
+                new GenericIdentity(user.Username, "TokenAuth"),
+                new[] { new Claim("ID", user.Id.ToString()) }
             );
 
             var securityToken = handler.CreateToken(new SecurityTokenDescriptor

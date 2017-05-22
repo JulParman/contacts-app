@@ -11,17 +11,18 @@ namespace ContactsApp.Token
     {
         public static string Audience { get; } = "ekoodi-audience";
         public static string Issuer { get; } = "ekoodi-issuer";
-        public static RsaSecurityKey Key { get; } = new RsaSecurityKey(GenerateKey());
+        public static RsaSecurityKey Key { get; } = new RsaSecurityKey(Rsa());
         public static SigningCredentials SigningCredentials { get; } = new SigningCredentials(Key, SecurityAlgorithms.RsaSha256Signature);
 
-        public static TimeSpan ExpiresSpan { get; } = TimeSpan.FromMinutes(40);
+        public static TimeSpan ExpiresSpan { get; } = TimeSpan.FromMinutes(1);
         public static string TokenType { get; } = "Bearer";
 
-        public static RSAParameters GenerateKey()
+        private static RSA Rsa()
         {
-            using (var key = new RSACryptoServiceProvider(2048))
+            using (var rsa = RSA.Create())
             {
-                return key.ExportParameters(true);
+                rsa.KeySize = 2048;
+                return rsa;
             }
         }
     }

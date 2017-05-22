@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpModule, RequestOptions, XHRBackend} from '@angular/http';
+import {ConnectionBackend, HttpModule, RequestOptions, XHRBackend} from '@angular/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MaterialModule} from '@angular/material';
 
@@ -18,8 +18,11 @@ import {ContactAddressPipe} from './contact/pipes/contact-address.pipe';
 import {LoginComponent} from './contact/user/login/login.component';
 import {RouterModule} from "@angular/router";
 import {ContactsComponent} from "./contact/contacts.component";
-import { VibrateDirective } from './contact/vibrate.directive';
+import {VibrateDirective} from './contact/vibrate.directive';
 import {HttpService} from "./contact/services/http.service";
+import {UserService} from "./contact/services/user.service";
+import {UserApiService} from "./contact/services/user-api.service";
+import {AuthenticationService} from "./contact/services/authentication.service";
 
 const routes = [
   {
@@ -36,6 +39,10 @@ const routes = [
     component: ContactsComponent
   }
 ];
+
+export function getHttp(backend: ConnectionBackend, options: RequestOptions) {
+  return new HttpService(backend, options);
+}
 
 @NgModule({
   declarations: [
@@ -57,10 +64,20 @@ const routes = [
     FlexLayoutModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ContactService, DialogService, LocalStorageService, ContactApiService, HttpService,
-  useFactory:(backend:XHRBackend, options:RequestOptions) => {
-    
-}],
+  providers: [
+    {
+      provide: HttpService,
+      useFactory: getHttp,
+      deps: [XHRBackend, RequestOptions]
+    },
+    ContactService,
+    DialogService,
+    LocalStorageService,
+    ContactApiService,
+    UserService,
+    UserApiService,
+    AuthenticationService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ContactDialogComponent, MapDialogComponent]
 })

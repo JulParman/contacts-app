@@ -1,37 +1,56 @@
 import {Injectable} from '@angular/core';
-import {Http, RequestOptions, RequestOptionsArgs, XHRBackend} from "@angular/http";
+import {Http, RequestOptions, RequestOptionsArgs, Response, ConnectionBackend, Headers, Request} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class HttpService extends Http {
 
-  constructor(backend: XHRBackend, options: RequestOptions) {
-    let token = localStorage.getItem('auth_token');
-    options.headers.set('Authorisation', 'Bearer ${token}');
-    super(backend, options);
+  private authHeaderName: string = 'Authorization';
+  private authHeaderBearerPrefix: string = 'Bearer ';
+  private authToken: string;
+
+  constructor(backend: ConnectionBackend, private defaultOptions: RequestOptions) {
+    super(backend, defaultOptions);
   }
 
   request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-    let token = localStorage.getItem('auth_token');
     if (typeof url === 'string') {
       if (!options) {
         options = {headers: new Headers()};
       }
-      options.headers.set('Authorization', 'Bearer ${token}');
+      options.headers.set(this.authHeaderName, this.authHeaderBearerPrefix + this.authToken);
     } else {
-      url.headers.set('Authorization', 'Bearer ${token}');
+      url.headers.set(this.authHeaderName, this.authHeaderBearerPrefix + this.authToken);
     }
-    return super.request(url, options).catch(this.catchAuthError(this));
+    return this.intercept(super.request(url, options));
   }
 
-  private catchAuthError(self: HttpService) {
-    return (res: Response) => {
-      console.log(res);
-      if (res.status === 401 || res.status === 403) {
-        console.log(res);
-      }
-      return Observable.throw(res);
-    };
+  get(url: string, options?: RequestOptionsArgs, skipInterceptor?: boolean): Observable<Response> {
+    if (skipInterceptor) {
+      return super.get(url, options);
+    }
+    return this.intercept(super.get(url, options));
   }
+
+  post(url: string, body: any, options?: RequestOptionsArgs, skipInterceptor?: boolean): Observable<Response> {
+    if (skipInterceptor) {
+      return super.post(url, body, options);
+    }
+    return this.intercept(super.post(url, body, options));
+  }
+
+  saveToken(token: string) {
+    this.authToken = token;
+  }
+
+  private intercept(observable: Observable<Response>): Observable<Response> {
+    return observable.catch((error: Response) => {
+      if (error.status == 401) {
+        console.log(error.status + ' ' + error.statusText);
+      }
+      return Observable.throw(error);
+    });
+  }
+
 
 }

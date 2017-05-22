@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using ContactsApp.Controllers.Communication;
 using ContactsApp.Model;
 using ContactsApp.Services;
 using ContactsApp.Token;
@@ -21,54 +22,18 @@ namespace ContactsApp.Controllers
     {
         private readonly IUserService _userService;
 
-        [HttpPost]
-        public string Authenticate([FromBody]User user)
+        public TokenAuthController(IUserService userService)
         {
-            var existUser = _userService.FindUserByUsernameAndPassword(user.UserName, user.PassWord);
-
-            if (existUser != null)
-            {
-                var requestAt = DateTime.Now;
-                var expiresIn = requestAt + TokenAuthOption.ExpiresSpan;
-                var token = GenerateToken.TokenGeneration(existUser, expiresIn);
-
-                return JsonConvert.SerializeObject(new RequestResult
-                {
-                    State = RequestState.Success, 
-                    Data = new
-                    {
-                        requertAt = requestAt,
-                        expiresIn = TokenAuthOption.ExpiresSpan.TotalSeconds,
-                        tokeyType = TokenAuthOption.TokenType,
-                        accessToken = token
-                    }
-                });
-            }
-            else
-            {
-                return JsonConvert.SerializeObject(new RequestResult
-                {
-                    State = RequestState.Failed,
-                    Msg = "Username or password is invalid"
-                });
-            }
+            _userService = userService;
         }
-        
 
-        [HttpGet]
-        [Authorize("Bearer")]
-        public string GetUserInfo()
+        [HttpPost]
+        public IActionResult Authenticate([FromBody] AuthRequest authRequest)
         {
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-
-            return JsonConvert.SerializeObject(new RequestResult
-            {
-                State = RequestState.Success,
-                Data = new
-                {
-                    UserName = claimsIdentity.Name
-                }
-            });
+            var user = _userService.FindUserByUsernameAndPassword(authRequest.Username, authRequest.Password);
+            if (user == null) return new UnauthorizedResult();
+            var token = GenerateToken.TokenGeneration(user);
+            return new JsonResult(new AuthResponse(user.Id.ToString(), token));
         }
     }
 }

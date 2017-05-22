@@ -70,6 +70,7 @@ namespace ContactsApp
             loggerFactory.AddDebug();
 
             app.UseCors("DevPolicy");
+            ConfigureAuthentication(app);
 
             app.UseMvc();
 

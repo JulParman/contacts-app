@@ -14,7 +14,7 @@ namespace ContactsApp.Repository
         {
             _context = context;
             var user = new User("admin", "admin", "Admin", "Admin", "admin.admin@saimia.fi");
-            if (FindByUsername(user.UserName) == null)
+            if (FindByUsername(user.Username) == null)
             {
                 _context.User.Add(user);
                 _context.SaveChanges();
@@ -23,15 +23,13 @@ namespace ContactsApp.Repository
 
         public User FindByUsername(string username)
         {
-            return _context.User.FirstOrDefault(u => u.UserName == username);
+            return _context.User.FirstOrDefault(u => u.Username == username);
         }
 
         public User FindByUsernameAndPassword(string username, string password)
         {
-            return _context.User.FirstOrDefault(u => u.UserName == username && u.PassWord == password);
+            return _context.User.FirstOrDefault(u => u.Username == username && u.Password == password);
         }
-
-
 
     }
 }

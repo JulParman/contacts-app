@@ -3,17 +3,17 @@
     <div fxLayout="row" fxLayoutAlign="start center">
       <md-icon class="material-icons color md-36 login-icon-padding">account_circle</md-icon>
     <md-input-container>
-      <input mdInput type="text" [(ngModel)]="userName" placeholder="Username">
+      <input mdInput type="text" [(ngModel)]="user.username" placeholder="Username">
     </md-input-container>
     </div>
     <div fxLayout="row" fxLayoutAlign="start center">
     <md-icon class="material-icons color md-36 login-icon-padding">lock</md-icon>
     <md-input-container>
-      <input mdInput type="password" [(ngModel)]="password" placeholder="Password">
+      <input mdInput type="password" [(ngModel)]="user.password" placeholder="Password">
     </md-input-container>
     </div>
   </md-card-content>
   <md-card-actions layout="row" layout-align="end center">
-    <button md-fab (click)="login(userName)" [appVibrate]="">Login</button>
+    <button md-fab (click)="login()" [appVibrate]="">Login</button>
   </md-card-actions>
 </md-card>

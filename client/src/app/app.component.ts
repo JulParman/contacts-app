@@ -13,7 +13,6 @@ export class AppComponent {
 
   toolbarDisabled: boolean;
   sidenavMode: string;
-  user:string;
 
   @ViewChild('sidenav') sidenav: MdSidenav;
 
@@ -38,7 +37,6 @@ export class AppComponent {
             return;
           }
           this.toolbarDisabled = false;
-          this.user = LoginComponent.user;
         }
       });
   }
