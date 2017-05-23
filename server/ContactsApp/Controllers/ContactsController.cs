@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using ContactsApp.model;
 using ContactsApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactsApp.Controllers
 {
     [Route("api/contacts")]
+    [Authorize("Bearer")]
     public class ContactsController : Controller
     {
         private readonly IContactService _contactService;

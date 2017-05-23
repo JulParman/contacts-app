@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, RequestOptions, RequestOptionsArgs, Response, ConnectionBackend, Headers, Request} from "@angular/http";
 import {Observable} from "rxjs/Observable";
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class HttpService extends Http {
@@ -45,7 +46,7 @@ export class HttpService extends Http {
 
   private intercept(observable: Observable<Response>): Observable<Response> {
     return observable.catch((error: Response) => {
-      if (error.status == 401) {
+      if (error.status === 401) {
         console.log(error.status + ' ' + error.statusText);
       }
       return Observable.throw(error);

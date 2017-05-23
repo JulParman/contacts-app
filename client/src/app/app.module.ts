@@ -27,7 +27,7 @@ import {AuthenticationService} from "./contact/services/authentication.service";
 const routes = [
   {
     path: '',
-    redirectTo: 'contacts',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
