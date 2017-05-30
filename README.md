@@ -23,5 +23,6 @@ ng serve --environment=local
 - Android
 
 * Run on Android device
+
 cordova run android
 
