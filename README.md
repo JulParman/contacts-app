@@ -24,6 +24,9 @@ ng serve --environment=local
 
 #### Server 
 - C# .NET Core Web API (Visual Studio 2017)
+```
+http://localhost:60829/api
+```
 
 #### Cordova 
 - Android
