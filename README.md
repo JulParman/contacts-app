@@ -25,7 +25,7 @@ ng serve --environment=local
 #### Server 
 - C# .NET Core Web API (Visual Studio 2017)
 ```
-http://localhost:60829/api
+http://contactsapp20170606010329.azurewebsites.net/api
 ```
 
 #### Cordova 
