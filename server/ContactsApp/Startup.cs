@@ -72,11 +72,11 @@ namespace ContactsApp
             app.UseCors("DevPolicy");
             ConfigureAuthentication(app);
 
-            app.UseMvc();
-
             var context = app.ApplicationServices.GetService<ContactContext>();
             if (context.Database.EnsureCreated())
                 context.Database.Migrate();
+
+            app.UseMvc();
         }
 
         private static void ConfigureAuthentication(IApplicationBuilder app)
